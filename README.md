@@ -25,6 +25,53 @@ dependencies:
 
 ## Usage
 
+#### Markup
+
+A theme extension for the markup library. Can be injected into
+context via ThemeData.extensions or by including as an ancestor
+to the target Text2 Widget. It supplies a more contextual markup
+diction that defines how affected text2 markups are implemented.
+
+###### Example:
+```dart
+  Widget build(BuildContext context) {
+  //...
+  return MaterialApp(
+    title: 'Text2',
+    theme: ThemeData(primarySwatch: Colors.blue),
+    extensions: [
+      MarkupTheme(
+        builder: (context) {
+          return MultiMarkup({
+            SizeMarkup(context),
+            DetailMarkup(context),
+            ShortcutMarkup(context),
+            WeightMarkup(),
+            ColorMarkup(
+              extras: {
+                'primary': context.colors.primary,
+                'foreground': context.colors.foreground,
+                'background': context.colors.background,
+                'secondary': context.colors.secondary,
+                'ascent': context.colors.ascent,
+                'primal': context.colors.primal,
+              },
+            ),
+            HyperlinkMarkup(
+              style: TextStyle(
+                color: context.colors.secondary,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          });
+        },
+      ),
+    ],
+  );
+}
+```
+
+
 #### Markup Theme
 
 A theme extension for the markup library. Can be injected into

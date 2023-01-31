@@ -12,35 +12,52 @@ part '../markups/size_markup.dart';
 part '../markups/theme_markup.dart';
 part '../markups/weight_markup.dart';
 
+/// ## Markup
+/// The base class that enables [Text2] to span
+/// text based on modifiers. Modifiers are in ...
+/// string spans that are pre declared via markup
+/// instances.
+///
+/// ```dart
+/// Markup(
+///    modifiers,
+///    styling: (arg) {
+///      const x = Colors.transparent;
+///      final y = extras?[arg] ?? x;
+///      final temp = TextStyle(color: y);
+///      return style(arg, temp);
+///    },
+/// )
+/// ```
 class Markup {
   //...Fields
   final String modifiers;
 
   /// build text style based on optional arguments
   ///
-  /// structure, `[modifier1: arg, modifier2,](string)`
-  ///
   /// example: `hello [color: red]( world )`
   final Styling? styling;
 
   /// add gesture recognizer for this modifier
   ///
-  /// Note: if multiple gesture recognizer overlap on a single
-  /// modifier the nearest recognizer will be chosen.
+  /// Note: if multiple gesture recognizer overlap
+  /// on a single modifier the nearest recognizer
+  /// will be chosen.
   final Recognition? recognition;
 
-  /// Transform source string to transformed string
+  /// Transform source string to transformed string.
   ///
-  /// Reduces source to a single string by iteratively transforming
-  /// source using the provided transform function.
+  /// Reduces source to a single string by iteratively
+  /// transforming source using the provided transform
+  /// function.
   ///
-  /// NOTE: TRANSFORMER MODIFIERS ARE EXECUTED LEFT TO RIGHT.
+  /// NOTE: TRANSFORMERS ARE EXECUTED LEFT TO RIGHT.
   ///
   /// example: "`[t1, t2, t3, t4](hello world)`"
   ///
-  /// In above example, string `hello world` is first transformed by
-  /// `t1` then the result will be transformed by `t2` till `t4`;
-  ///
+  /// In the above example, `hello world` is first
+  /// transformed by `t1` then the result will be
+  /// transformed by `t2` till `t4`;
   ///
   final Transformation? transformation;
 
@@ -48,21 +65,25 @@ class Markup {
   /// and resultant effect of predecessor styling
   /// hierarchy.
   ///
-  /// structure, `[modifier1: arg, modifier2,](string)`
+  /// structure: `[mod1: arg, mod2](string)`
   ///
   /// example: `hello [color: red]( world )`
   final Refactoring? refactoring;
 
-  /// callback to be called when this modifier is entered by a pointer.
+  /// callback to be called when this modifier is
+  /// entered by a pointer.
   ///
-  /// Note: if multiple callbacks are overlapping on single modifier
-  /// all `onEnter` events will be called from top-most element to bottom-most.
+  /// Note: if multiple callbacks are overlapping
+  /// on single modifier all `onEnter` events will
+  /// be called from top-most element to bottom-most.
   final void Function(PointerEnterEvent)? onEnter;
 
-  /// callback to be called when this modifier is exited by a pointer.
+  /// callback to be called when this modifier is
+  /// exited by a pointer.
   ///
-  /// Note: if multiple callbacks are overlapping on single modifier
-  /// all `onExit` events will be called from bottom-most element to top-most.
+  /// Note: if multiple callbacks are overlapping on
+  /// single modifier all `onExit` events will be
+  /// called from bottom-most element to top-most.
   final void Function(PointerExitEvent)? onExit;
 
   /// mouse cursor for this modifier
