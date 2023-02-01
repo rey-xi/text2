@@ -2,11 +2,30 @@ import 'package:flutter/material.dart';
 
 import 'markup.dart';
 
+/// ## Markup Theme
+/// A theme extension for the markup library.
+/// Can be injected into context via ThemeData
+///.extensions or by including as an ancestor
+/// to the target Text2 Widget. It supplies a
+/// more contextual markup diction that defines
+/// how affected text2 markups are implemented.
+///
+/// ```dart
+///  MarkupTheme(
+///    builder: (context) {
+///       // return markup
+///    }
+///  );
+/// ```
 class MarkupTheme extends StatelessWidget
     implements //
         ThemeExtension<MarkupTheme> {
   //...Fields
-  final Markup Function(BuildContext context)? builder;
+  /// For more grained control over modifiers
+  /// a markup builder is supplied here rather
+  /// than a markup itself.
+  final MarkupBuilder? builder;
+
   final Widget? child;
 
   const MarkupTheme({
@@ -14,10 +33,6 @@ class MarkupTheme extends StatelessWidget
     this.builder,
     this.child,
   });
-
-  factory MarkupTheme.of(BuildContext context) {
-    return Theme.of(context).markupTheme;
-  }
 
   //...Getters
   @override
@@ -49,26 +64,11 @@ class MarkupTheme extends StatelessWidget
   }
 }
 
-class DefaultMarkupSheet extends MarkupTheme {
-  //...Fields
-  DefaultMarkupSheet({super.key})
-      : super(
-          builder: (context) {
-            return MultiMarkup({
-              SizeMarkup(context),
-              DetailMarkup(context),
-              ShortcutMarkup(context),
-              WeightMarkup(),
-              ColorMarkup(),
-              HyperlinkMarkup(),
-            });
-          },
-        );
-}
-
 extension MarkupThemeData on ThemeData {
   //...Getters
   MarkupTheme get markupTheme {
     return extension<MarkupTheme>() ?? const MarkupTheme();
   }
 }
+
+typedef MarkupBuilder = Markup Function(BuildContext context);

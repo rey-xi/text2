@@ -6,6 +6,19 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:text2/text2.dart';
 
+/// ## Selectable Text 2.0
+/// Advanced selectable text widget with markups
+/// and modifiers. Provides most features already
+/// found in [SelectableText] but with extra spice
+/// of markup implementation.
+///
+/// See: [Markup], [MarkupTheme] and [Text2]
+///
+/// ```dart
+/// SelectableText2(
+///   '[bold](It's) the [italic](dawn) of time',
+/// );
+/// ```
 class SelectableText2 extends StatelessWidget {
   //...Fields
   final String data;
@@ -82,8 +95,8 @@ class SelectableText2 extends StatelessWidget {
     final style = this.style ?? theme.style ?? defaultStyle;
     final markup = this.markup ?? theme.markup ?? const Markup('');
     if (benchmarkSpeed) start = DateTime.now().millisecondsSinceEpoch;
-    final applier = MultiStyleParser(data, style: style).clean().parse();
-    final spans = applier.toTextSpans(context, extraMarkup: markup);
+    final applier = MarkupParser(data, style: style).clean().parse();
+    final spans = applier.toTextSpans(context, markup: markup);
     if (benchmarkSpeed) {
       final end = DateTime.now().millisecondsSinceEpoch;
       log("Text 2.0 Took ${end - start!} milliSec to process.");

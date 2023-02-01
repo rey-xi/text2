@@ -1,5 +1,19 @@
 part of markup;
 
+/// ## Shortcut Markup
+/// Easily markup your Text 2.0 contents in one word
+///
+/// ### Usage
+/// Once injected into the context either via themes
+/// or inline, supported modifiers are 'bold', 'thick',
+/// 'thin', 'emphasis', 'dwarf', 'short', 'tall', 'grand',
+/// 'giant', 'italic', 'underline', 'strike', 'overline',
+/// 'wavyLine', 'doubleLine', 'dashedLine', 'dottedLine',
+/// 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body' and 'title'.
+///
+/// ```markdown
+/// [title, bold, grand](string)
+/// ```
 class ShortcutMarkup extends MultiMarkup {
   //...Fields
   ShortcutMarkup(BuildContext context)
@@ -36,6 +50,12 @@ class ShortcutMarkup extends MultiMarkup {
             'tall',
             refactor: (style) {
               return SizeMarkup.style(context, '1.25%', style);
+            },
+          ),
+          Markup.entry(
+            'grand',
+            refactor: (style) {
+              return SizeMarkup.style(context, '2.1%', style);
             },
           ),
           Markup.entry(
@@ -119,6 +139,10 @@ class ShortcutMarkup extends MultiMarkup {
           Markup.entry(
             'body',
             style: DetailMarkup.style(context, 'bodyText2'),
+          ),
+          Markup.entry(
+            'title',
+            style: DetailMarkup.style(context, 'titleMedium'),
           ),
         ]);
 }

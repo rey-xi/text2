@@ -1,7 +1,18 @@
 part of markup;
 
+/// ## Multi Markup
+/// Typically combine multiple markups. Cool!.
+/// ```dart
+/// MultiMarkup({
+///   SizeMarkup(context),
+///   DetailMarkup(context),
+///   ShortcutMarkup(context),
+/// });
+/// ```
 class MultiMarkup implements Markup {
   //...Fields
+  /// Sub markups that will be parsed and processed
+  /// during a process call on this markup. Jux Lit!
   final Iterable<Markup> children;
 
   const MultiMarkup(this.children);

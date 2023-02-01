@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'markup_token.dart';
 
+/// ## Markup Processor
 class MarkupProcessor extends Equatable {
   //...Fields
   final String modifiers;

@@ -3,13 +3,15 @@ library markup;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:text2/src/markup/markup_theme.dart';
 
 part '../markups/color_markup.dart';
+part '../markups/default_markup.dart';
+part '../markups/detail_markup.dart';
 part '../markups/hyperlink_markup.dart';
 part '../markups/multi_markup.dart';
 part '../markups/shortcut_markup.dart';
 part '../markups/size_markup.dart';
-part '../markups/theme_markup.dart';
 part '../markups/weight_markup.dart';
 
 /// ## Markup
@@ -23,8 +25,8 @@ part '../markups/weight_markup.dart';
 ///    modifiers,
 ///    styling: (arg) {
 ///      const x = Colors.transparent;
-///      final y = extras?[arg] ?? x;
-///      final temp = TextStyle(color: y);
+///      final color = extras?[arg] ?? x;
+///      final temp = TextStyle(color: color);
 ///      return style(arg, temp);
 ///    },
 /// )
@@ -135,6 +137,9 @@ class Markup {
     return modifiers.split(RegExp(r', ?'));
   }
 
+  /// Convert Markup in to a list of much simpler
+  /// markups to undermine the effect of multiple
+  /// modifiers and multi markup.
   Map<String, Markup> get spread {
     //..
     final sheet = <String, Markup>{};

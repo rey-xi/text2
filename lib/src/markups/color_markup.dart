@@ -1,11 +1,27 @@
 part of markup;
 
+/// ## Color Markup
+/// Markup system for [Color].
+///
+/// ### Usage
+/// Once injected into the context either via themes
+/// or inline, supported modifiers are 'color',
+/// 'back-color' and 'deco-color' by default. Supported
+/// argument is either an hex color code, color integer
+/// value, name of a material color, or any key supported
+/// from [extras].
+///
+/// ```markdown
+/// [color: blue](string)
+/// [color: 0xFFFFFF](string)
+/// [color: 15368](string)
+/// ```
 class ColorMarkup extends MultiMarkup {
   //...Fields
   ColorMarkup({
     String modifiers = 'color',
-    String backgroundModifiers = 'bColor',
-    String decorationModifiers = 'dColor',
+    String backgroundModifiers = 'back-color',
+    String decorationModifiers = 'deco-color',
     Map<String, Color>? extras,
   }) : super([
           Markup(
@@ -38,7 +54,14 @@ class ColorMarkup extends MultiMarkup {
     //...
     Color? color;
     TextStyle result = const TextStyle();
-    final value = int.tryParse(arg ?? '');
+    var value = int.tryParse(arg ?? '');
+    if (arg != null && arg.startsWith('0x')) {
+      final x = arg.length == 8 ? 'FF' : '';
+      value = int.tryParse(
+        '$x${arg.substring(2)}',
+        radix: 16,
+      );
+    }
     if (value != null) color = Color(value);
     if (template.color != null) {
       if (template.color != Colors.transparent) {

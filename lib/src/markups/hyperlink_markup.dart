@@ -1,5 +1,19 @@
 part of markup;
 
+/// ## Hyperlink Markup
+/// Markup system for [Hyperlinks].
+///
+/// ### Usage
+/// Once injected into the context either via themes
+/// or inline, supported modifiers are 'href', and
+/// 'hyperlink' by default. Supported argument is
+/// either none or any key supported from [routes]
+///
+/// ```markdown
+/// [href](string)
+/// [hyper: 0xFFFFFF](string)
+/// [color: 15368](string)
+/// ```
 class HyperlinkMarkup extends Markup {
   //...Fields
   HyperlinkMarkup({

@@ -5,6 +5,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:text2/text2.dart';
 
+/// ## Text 2.0
+/// Advanced text widget with markups and modifiers.
+/// Provides most features already found in [Text]
+/// but with extra spice of markup implementation.
+///
+/// See: [Markup], [MarkupTheme] and [SelectableText2]
+///
+/// ```dart
+/// Text2('[bold](It's) the [italic](dawn) of time');
+/// ```
 class Text2 extends StatelessWidget {
   //...Fields
   final String data;
@@ -51,8 +61,8 @@ class Text2 extends StatelessWidget {
     final style = this.style ?? theme.style ?? defaultStyle;
     final markup = this.markup ?? theme.markup ?? const Markup('');
     if (benchmarkSpeed) start = DateTime.now().millisecondsSinceEpoch;
-    final applier = MultiStyleParser(data, style: style).clean().parse();
-    final spans = applier.toTextSpans(context, extraMarkup: markup);
+    final applier = MarkupParser(data, style: style).clean().parse();
+    final spans = applier.toTextSpans(context, markup: markup);
     if (benchmarkSpeed) {
       final end = DateTime.now().millisecondsSinceEpoch;
       log("Text 2.0 Took ${end - start!} milliSec to process.");
@@ -64,7 +74,7 @@ class Text2 extends StatelessWidget {
       locale: locale ?? theme.locale,
       maxLines: maxLines ?? theme.maxLines,
       overflow: overflow ?? theme.overflow,
-      semanticsLabel: semanticsLabel ?? theme.semanticsLabel,
+      semanticsLabel: semanticsLabel,
       softWrap: softWrap ?? theme.softWrap,
       strutStyle: strutStyle ?? theme.strutStyle,
       textAlign: textAlign ?? theme.textAlign,

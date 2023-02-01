@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// ## Markup Token
 class MarkupToken extends Equatable {
   //...Fields
   final String code;

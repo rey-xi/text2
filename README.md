@@ -1,6 +1,6 @@
 # Markup
 
-A powerful yet easy to use plugin to style text effectively
+A powerful yet easy to use plugin to markup text effectively
 and efficiently in Flutter.
 
 ## Getting Started
@@ -25,48 +25,44 @@ dependencies:
 
 ## Usage
 
+#### Text 2.0 
+
+Advanced text widget with markups and modifiers. Provides most 
+features already found in material Text but with extra spice of
+markup implementation.
+
+
+#### Selectable Text 2.0
+
+Advanced selectable text widget with markups and modifiers. Provides
+most features already found in material SelectableText but with extra
+spice of markup implementation.
+
+
+#### Text 2.0 Theme
+
+Just a slight upgrade to StructStyle. Gives additional access to 
+predefine Markups along side other core features of a StructStyle.
+
+
 #### Markup
 
-A theme extension for the markup library. Can be injected into
-context via ThemeData.extensions or by including as an ancestor
-to the target Text2 Widget. It supplies a more contextual markup
-diction that defines how affected text2 markups are implemented.
+The base class that enables Text2 to span text based on modifiers.
+Modifiers are in ... string spans that are pre declared via markup 
+instances.
 
 ###### Example:
 ```dart
-  Widget build(BuildContext context) {
+Markup get markup {
   //...
-  return MaterialApp(
-    title: 'Text2',
-    theme: ThemeData(primarySwatch: Colors.blue),
-    extensions: [
-      MarkupTheme(
-        builder: (context) {
-          return MultiMarkup({
-            SizeMarkup(context),
-            DetailMarkup(context),
-            ShortcutMarkup(context),
-            WeightMarkup(),
-            ColorMarkup(
-              extras: {
-                'primary': context.colors.primary,
-                'foreground': context.colors.foreground,
-                'background': context.colors.background,
-                'secondary': context.colors.secondary,
-                'ascent': context.colors.ascent,
-                'primal': context.colors.primal,
-              },
-            ),
-            HyperlinkMarkup(
-              style: TextStyle(
-                color: context.colors.secondary,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          });
-        },
-      ),
-    ],
+  return Markup(
+      modifiers,
+      styling: (arg) {
+        const x = Colors.transparent;
+        final color = extras?[arg] ?? x;
+        final temp = TextStyle(color: color);
+        return style(arg, temp);
+      },
   );
 }
 ```
@@ -81,7 +77,7 @@ diction that defines how affected text2 markups are implemented.
 
 ###### Example:
 ```dart
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
   //...
   return MaterialApp(
     title: 'Text2',
@@ -146,13 +142,13 @@ class ParagraphWithSuperText extends StatelessWidget {
               " [href:open_link, color:black](separate article) later on"
               " in the module.",
             ),
+            markup: DefaultMarkup(context),
           ],
         ),
       ),
     );
   }
 }
-
 ```
 
 ### Thanks

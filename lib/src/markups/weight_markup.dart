@@ -1,5 +1,21 @@
 part of markup;
 
+/// ## Weight Markup
+/// Markup system for [TextStyle.fontWeight].
+///
+/// ### Usage
+/// Once injected into the context either via themes
+/// or inline, supported modifiers are 'weight', or 'w'
+/// by default. Supported argument is either an integer
+/// ranging from 100, 200, 300.. till 900 or "thick",
+/// "bold", "thin" or "emphasis".
+///
+/// ```markdown
+/// [weight: 200](string)
+/// [w: 500](string)
+/// [w: bold](string)
+/// [w: Thin](string)
+/// ```
 class WeightMarkup extends Markup {
   //...Fields
   WeightMarkup({

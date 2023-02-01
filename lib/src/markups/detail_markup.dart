@@ -1,15 +1,29 @@
 part of markup;
 
+/// ## TextTheme or Detail Markup
+/// Markup system for [TextTheme].
+///
+/// ### Usage
+/// Once injected into the context either via themes
+/// or inline, supported modifiers are 'detail', and
+/// 'theme' by default. Supported argument is a name
+/// of any text style in a typical material text theme
+///
+/// ```markdown
+/// [theme: displaySmall](string)
+/// [detail: body1](string)
+/// [detail: headlineLarge](string)
+/// ```
 class DetailMarkup extends Markup {
   //...Fields
   DetailMarkup(
     BuildContext context, {
-    TextTheme? presets,
-    String modifiers = 'detail',
+    TextTheme? theme,
+    String modifiers = 'detail, theme',
   }) : super(
           modifiers,
           styling: (arg) {
-            return style(context, arg, presets);
+            return style(context, arg, theme);
           },
         );
 

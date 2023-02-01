@@ -4,6 +4,24 @@ import 'package:flutter/material.dart';
 
 import '../markup/markup.dart';
 
+/// ## Text Theme 2.0
+/// Just a slight upgrade to [StructStyle]. Gives
+/// additional access to predefine Markups along
+/// side other core features of a [StructStyle]
+///
+/// See: [Markup], [Text2] and [SelectableText2].
+///
+/// ```dart
+/// Text2Theme(
+///    markup: Markup(
+///    'bold',
+///    styling: (arg) {
+///       return const TextStyle(
+///          fontWeight: FontWeight.bold,
+///       );
+///    },
+/// );
+/// ```
 class Text2Theme extends StatelessWidget
     implements //
         ThemeExtension<Text2Theme> {
@@ -20,7 +38,6 @@ class Text2Theme extends StatelessWidget
   final TextHeightBehavior? textHeightBehavior;
   final TextWidthBasis? textWidthBasis;
   final double? textScaleFactor;
-  final String? semanticsLabel;
   final Widget? child;
 
   const Text2Theme({
@@ -37,7 +54,6 @@ class Text2Theme extends StatelessWidget
     this.textHeightBehavior,
     this.textWidthBasis,
     this.textScaleFactor,
-    this.semanticsLabel,
     this.child,
   });
 
@@ -68,7 +84,6 @@ class Text2Theme extends StatelessWidget
       locale: locale ?? this.locale,
       maxLines: maxLines ?? this.maxLines,
       overflow: overflow ?? this.overflow,
-      semanticsLabel: semanticsLabel ?? this.semanticsLabel,
       softWrap: softWrap ?? this.softWrap,
       strutStyle: strutStyle ?? this.strutStyle,
       style: style ?? this.style,
@@ -87,7 +102,6 @@ class Text2Theme extends StatelessWidget
       locale: other?.locale ?? locale,
       maxLines: other?.maxLines ?? maxLines,
       overflow: other?.overflow ?? overflow,
-      semanticsLabel: other?.semanticsLabel ?? semanticsLabel,
       softWrap: other?.softWrap ?? softWrap,
       strutStyle: other?.strutStyle ?? strutStyle,
       style: other?.style ?? style,
@@ -108,7 +122,6 @@ class Text2Theme extends StatelessWidget
       locale: other.locale ?? locale,
       maxLines: other.maxLines ?? maxLines,
       overflow: other.overflow ?? overflow,
-      semanticsLabel: other.semanticsLabel ?? semanticsLabel,
       softWrap: other.softWrap ?? softWrap,
       strutStyle: other.strutStyle ?? strutStyle,
       style: TextStyle.lerp(style, other.style, t),
