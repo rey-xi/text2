@@ -49,8 +49,8 @@ class SelectableText2 extends StatelessWidget {
   final ScrollPhysics? scrollPhysics;
   final TextSelectionControls? selectionControls;
   final bool showCursor;
-  final ToolbarOptions? toolbarOptions;
   final bool benchmarkSpeed;
+  final ContextMenuBuilder? contextMenuBuilder;
 
   const SelectableText2(
     this.data, {
@@ -82,8 +82,8 @@ class SelectableText2 extends StatelessWidget {
     this.scrollPhysics,
     this.selectionControls,
     this.showCursor = false,
-    this.toolbarOptions,
     this.benchmarkSpeed = false,
+    this.contextMenuBuilder,
   });
 
   @override
@@ -125,7 +125,12 @@ class SelectableText2 extends StatelessWidget {
       scrollPhysics: scrollPhysics,
       selectionControls: selectionControls,
       showCursor: showCursor,
-      toolbarOptions: toolbarOptions,
+      contextMenuBuilder: contextMenuBuilder,
     );
   }
 }
+
+typedef ContextMenuBuilder = Widget Function(
+  BuildContext context,
+  EditableTextState state,
+);

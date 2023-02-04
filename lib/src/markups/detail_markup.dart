@@ -27,66 +27,66 @@ class DetailMarkup extends Markup {
           },
         );
 
-  static TextStyle style(context, String? arg, [TextTheme? presets]) {
+  static TextStyle style(context, String? arg, [TextTheme? theme]) {
     //...
-    presets ??= Theme.of(context).textTheme;
+    theme ??= Theme.of(context).textTheme;
     switch (arg) {
       case "displayLarge":
-        return presets.displayLarge ?? const TextStyle();
+        return theme.displayLarge ?? const TextStyle();
       case "displayMedium":
-        return presets.displayMedium ?? const TextStyle();
+        return theme.displayMedium ?? const TextStyle();
       case "displaySmall":
-        return presets.displaySmall ?? const TextStyle();
+        return theme.displaySmall ?? const TextStyle();
       case "titleLarge":
-        return presets.titleLarge ?? const TextStyle();
+        return theme.titleLarge ?? const TextStyle();
       case "titleMedium":
-        return presets.titleMedium ?? const TextStyle();
+        return theme.titleMedium ?? const TextStyle();
       case "titleSmall":
-        return presets.titleSmall ?? const TextStyle();
+        return theme.titleSmall ?? const TextStyle();
       case "labelLarge":
-        return presets.labelLarge ?? const TextStyle();
+        return theme.labelLarge ?? const TextStyle();
       case "labelMedium":
-        return presets.labelMedium ?? const TextStyle();
+        return theme.labelMedium ?? const TextStyle();
       case "labelSmall":
-        return presets.labelSmall ?? const TextStyle();
+        return theme.labelSmall ?? const TextStyle();
       case "bodyLarge":
-        return presets.bodyLarge ?? const TextStyle();
+        return theme.bodyLarge ?? const TextStyle();
       case "bodyMedium":
-        return presets.bodyMedium ?? const TextStyle();
+        return theme.bodyMedium ?? const TextStyle();
       case "bodySmall":
-        return presets.bodySmall ?? const TextStyle();
+        return theme.bodySmall ?? const TextStyle();
       case "headlineLarge":
-        return presets.headlineLarge ?? const TextStyle();
+        return theme.headlineLarge ?? const TextStyle();
       case "headlineMedium":
-        return presets.headlineMedium ?? const TextStyle();
+        return theme.headlineMedium ?? const TextStyle();
       case "headlineSmall":
-        return presets.headlineSmall ?? const TextStyle();
+        return theme.headlineSmall ?? const TextStyle();
       case "headline1":
-        return presets.headline1 ?? const TextStyle();
+        return theme.displayLarge ?? const TextStyle();
       case "headline2":
-        return presets.headline2 ?? const TextStyle();
+        return theme.displayMedium ?? const TextStyle();
       case "headline3":
-        return presets.headline3 ?? const TextStyle();
+        return theme.displaySmall ?? const TextStyle();
       case "headline4":
-        return presets.headline4 ?? const TextStyle();
+        return theme.headlineMedium ?? const TextStyle();
       case "headline5":
-        return presets.headline5 ?? const TextStyle();
+        return theme.headlineSmall ?? const TextStyle();
       case "headline6":
-        return presets.headline6 ?? const TextStyle();
+        return theme.titleLarge ?? const TextStyle();
       case "body1":
-        return presets.bodyText1 ?? const TextStyle();
+        return theme.bodyLarge ?? const TextStyle();
       case "body2":
-        return presets.bodyText2 ?? const TextStyle();
+        return theme.bodyMedium ?? const TextStyle();
       case "button":
-        return presets.button ?? const TextStyle();
+        return theme.labelLarge ?? const TextStyle();
       case "caption":
-        return presets.caption ?? const TextStyle();
+        return theme.bodySmall ?? const TextStyle();
       case "subtitle1":
-        return presets.subtitle1 ?? const TextStyle();
+        return theme.titleMedium ?? const TextStyle();
       case "subtitle2":
-        return presets.subtitle2 ?? const TextStyle();
+        return theme.titleSmall ?? const TextStyle();
       case "overline":
-        return presets.overline ?? const TextStyle();
+        return theme.labelSmall ?? const TextStyle();
       default:
         return const TextStyle();
     }
