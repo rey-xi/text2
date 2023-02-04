@@ -1,6 +1,6 @@
 name: text2
 description: Plugin to markup text effectively and efficiently in Flutter.
-version: 0.0.1
+version: 0.0.1+1
 homepage: https://github.com/rey-xi/text2/tree/master
 repository: https://github.com/rey-xi/text2
 
